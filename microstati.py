@@ -1,7 +1,9 @@
 import pandas as pd
 from itertools import combinations
 from collections import Counter
-
+""" 
+Il seguente file non è commentato perché l'autore non aveva voglia, se avete voglia chiedete la pull request :)
+"""
 
 def generate_orbital_strings(n_electrons, n_orbitals=2):
     """
