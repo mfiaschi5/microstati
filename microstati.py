@@ -153,7 +153,7 @@ def generate_latex_output(elements):
 
 def valence_electrons_and_orbitals(element):
     """
-    Calculate the number of valence electrons and the number of degenerate orbitals in the valence shell of a given element.
+    Calcola il numero di elettroni di valenza e il numero di orbitali degeneri nel guscio di valenza di un elemento dato.
     """
     
     valence_configurations = {
