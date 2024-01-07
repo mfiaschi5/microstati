@@ -27,27 +27,32 @@ def can_subtract(matrix, row, col, height, width):
                 return False
     return True
 
-def subtract_submatrix(matrix, row, col, height, width):
+def subtract_submatrix(copymatrix, row, col, height, width):
     for r in range(row, row + height):
         for c in range(col, col + width):
-            matrix[r, c] -= 1
+            copymatrix[r, c] -= 1
 
 def create_submatrix(height, width):
     return np.ones((height, width), dtype=int)
 
 def decompose_matrix(matrix):
+    copymatrix = np.copy(matrix)
     decompositions = []
-    while np.any(matrix > 0):
-        row, col, height, width = find_largest_submatrix(matrix)
+    momenta = []
+    while np.any(copymatrix > 0):
+        row, col, height, width = find_largest_submatrix(copymatrix)
         if height == 0 or width == 0:
             break
-        subtract_submatrix(matrix, row, col, height, width)
+        subtract_submatrix(copymatrix, row, col, height, width)
         decompositions.append((row, col, height, width))
-        print_submatrix(row, col, height, width)
-    return decompositions
+        momenta.append( [(height-1)/2 , (width-1)/2])
+    return momenta
 
 def print_submatrix(row, col, height, width):
     submatrix = create_submatrix(height, width)
-    print(f"Sottomatrice in posizione ({row}, {col}) con dimensione {height}x{width}:")
+    
     print(submatrix)
+    
     print()
+
+    return [(height-1)/2 , (width-1)/2]
