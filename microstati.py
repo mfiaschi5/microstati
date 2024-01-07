@@ -67,7 +67,7 @@ def find_max_nonzero_index(column):
     else:
         return None
 
-def get_j(S,L,atom)
+def get_j(S,L,atom):
     electron, orbitals = valence_electrons_and_orbitals(atom)
     if electron == orbitals:
         J = S
@@ -75,6 +75,7 @@ def get_j(S,L,atom)
         J = abs(L-S)
     else: 
         J = abs(L+S)
+    return J
         
 
 def find_ground_state_term(pivot_table,atom):
@@ -113,8 +114,8 @@ def get_orbital_symbol(L):
 df_ml_ms, orbital_strings
 pivot_table = ml_ms_counts.pivot(index='M_L', columns='M_S', values='Count').fillna(0)
 
-print((pivot_table))
-print(find_ground_state_term(pivot_table))
+
+
 
 def generate_latex_output(elements):
     """
@@ -204,3 +205,4 @@ elements = ['N', 'O', 'Ti','Ni']
 
 latex_output = generate_latex_output(elements)
 print(latex_output)
+
