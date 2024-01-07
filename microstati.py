@@ -67,8 +67,17 @@ def find_max_nonzero_index(column):
     else:
         return None
 
+def get_j(S,L,atom)
+    electron, orbitals = valence_electrons_and_orbitals(atom)
+    if electron == orbitals:
+        J = S
+    elif electron < orbitals :
+        J = abs(L-S)
+    else: 
+        J = abs(L+S)
+        
 
-def find_ground_state_term(pivot_table):
+def find_ground_state_term(pivot_table,atom):
     """
     Trova il termine di stato fondamentale dalla tabella dei microstati
     """
@@ -78,17 +87,17 @@ def find_ground_state_term(pivot_table):
     
     max_ml_row =find_max_nonzero_index(pivot_table[max_ms_col])
     
-    
+    J = 0
     S = abs(max_ms_col) 
     L = abs(max_ml_row)
-
+    J = get_j(S,L,atom)
     
     multiplicity = int(2 * S + 1)
 
     
     term_symbol = get_orbital_symbol(L)
 
-    return f"{multiplicity}{term_symbol}"
+    return f"{multiplicity}{term_symbol}{J}"
 
 
 
@@ -138,7 +147,7 @@ def generate_latex_output(elements):
         pivot_table = ml_ms_counts.pivot(index='M_L', columns='M_S', values='Count').fillna(0)
 
 
-        ground_state_term = find_ground_state_term(pivot_table)
+        ground_state_term = find_ground_state_term(pivot_table,el)
 
 
         latex_output += "\\section*{" + str(el) +   " microstates}\n"
